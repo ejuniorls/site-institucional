@@ -19,21 +19,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::name('Site')->group(function () {
-    Route::get('/', HomeController::class)->name('home');
+Route::group(['prefix' => ''], function () {
+    Route::get('/', HomeController::class)->name('site.home');
 
     # Categorias
-    Route::get('produtos', [CategoryController::class, 'index'])->name('category.index');
-    Route::get('produtos/{slug}', [CategoryController::class, 'show'])->name('category.show');
+    Route::get('produtos', [CategoryController::class, 'index'])->name('site.products');
+    Route::get('produtos/{slug}', [CategoryController::class, 'show'])->name('site.products.category');
 
     # Blog
-    Route::get('blog', BlogController::class)->name('blog.index');
+    Route::get('blog', BlogController::class)->name('site.blog');
 
     # Sobre
-    Route::view('sobre', 'site.about.index');
+    Route::view('sobre', 'site.about.index')->name('site.about');
 
     # Contato
-    Route::get('contato', [ContactController::class, 'index'])->name('contact.index');
-    Route::post('contato', [ContactController::class, 'form'])->name('contact.form');
+    Route::get('contato', [ContactController::class, 'index'])->name('site.contact');
+    Route::post('contato', [ContactController::class, 'form'])->name('site.contact.form');
 
 });

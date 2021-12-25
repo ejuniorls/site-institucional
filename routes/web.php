@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\Site\BlogController;
+use App\Http\Controllers\Site\CategoryController;
+use App\Http\Controllers\Site\ContactController;
+use App\Http\Controllers\Site\HomeController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +18,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::group(['prefix' => ''], function () {
+    Route::get('/', HomeController::class)->name('site.home');
+
+    # Categorias
+    Route::get('produtos', [CategoryController::class, 'index'])->name('site.products');
+    Route::get('produtos/{slug}', [CategoryController::class, 'show'])->name('site.products.category');
+
+    # Blog
+    Route::get('blog', BlogController::class)->name('site.blog');
+
+    # Sobre
+    Route::view('sobre', 'site.about.index')->name('site.about');
+
+    # Contato
+    Route::get('contato', [ContactController::class, 'index'])->name('site.contact');
+    Route::post('contato', [ContactController::class, 'form'])->name('site.contact.form');
+
 });

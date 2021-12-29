@@ -15,14 +15,12 @@
                             {{session('message')}}
                         </div>
                     @endif
-                    <div>
-                    </div>
+
                     <label for="name">Nome completo</label>
-                    <input id="name" name="name" type="text" tabindex="1" placeholder="Ex: José da Silva"
-                           autofocus value="{{old('name')}}">
+                    <input id="name" name="name" type="text" tabindex="1" placeholder="Ex: José da Silva" xautofocus
+                           value="{{ old('name') }}">
                     @error('name')
-                    <div>{{ $message }}</div>
-                    @enderror
+                    <div>{{ $message }}</div> @enderror
 
                     <label for="email">Email</label>
                     <input id="email" name="email" type="text" tabindex="2" placeholder="Ex: email@email.com.br"

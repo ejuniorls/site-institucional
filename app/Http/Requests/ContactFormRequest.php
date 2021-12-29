@@ -29,4 +29,14 @@ class ContactFormRequest extends FormRequest
             'message' => 'required',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'O campo nome é obrigatório',
+            'email.email' => 'O campo email não é válido',
+            'email.required' => 'O campo email é obrigatório',
+            'message.required' => 'O campo message é obrigatório',
+        ];
+    }
 }
